@@ -3,30 +3,19 @@ import Number from "./Number";
 import Operation from "./Operation";
 import Screen from "./Screen";
 
-
-
 const Calculator = () => {
   /** TODO: Here is where you are going to keep track of calculator state */
-  // const [count, setCount] = useState(0);
-  const[firstNum, setFirstNum] = useState("");
-  const[secondNum, setSecondNum] = useState("");
-  const[operator, setOperator] = useState("");    
-  
+  const [count, setCount] = useState(1);
+
   /** TODO: what happens when I click a number? */
   const handleNumberClick = (e) => {
-
-    console.log("handleClick, value: ", e.target.innerHTML);
-    setFirstNum(firstNum+e.target.innerHTML);
-    console.log("num: ", firstNum);
-
+    console.log("number clicked: ", e.target.innerText);
   };
 
   /** TODO: what happens when I click an operation? */
   const handleOperationClick = (e) => {
-    console.log("firstNum: ", firstNum);
-    console.log("handleOperator, operator: ", e.target.innerHTML);
-    setOperator(e.target.innerHTML);
-    console.log("operator: ", operator);
+    console.log("operator clicked: ", e.target.innerText);
+    
   };
 
   return (
