@@ -1,25 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Number from "./Number";
 import Operation from "./Operation";
 import Screen from "./Screen";
 
 const Calculator = () => {
   /** TODO: Here is where you are going to keep track of calculator state */
-  const [count, setCount] = useState(1);
-  const [num, setNum] = useState("");
+  const [num, setNum] = useState("0");
   const [operator, setOperator] = useState("");
 
   /** TODO: what happens when I click a number? */
   const handleNumberClick = (e) => {
     console.log("number clicked: ", e.target.innerText);
-    setNum((previousState) => previousState + e.target.innerText);
+    // concatenate string of numbers based on what user clicks
+    // use parseInt to ignore "0", except when relevant
+    setNum((previousState) => parseInt(previousState + e.target.innerText));
     console.log("num state: ", num);
   };
 
   /** TODO: what happens when I click an operation? */
   const handleOperationClick = (e) => {
     console.log("operator clicked: ", e.target.innerText);
-    // change non "+" operators to "+" (because only one operator required for this homework) 
+    // track most recent operator click
+    // change "-, /, x" operators to "+" (only "+" operator is functional for this homework) 
     if (e.target.innerText === "-" || e.target.innerText === "/" || e.target.innerText === "x") {
       setOperator("+");
       console.log("operator: ", operator)
@@ -34,7 +36,7 @@ const Calculator = () => {
 
   return (
     <div>
-      <Screen value={123} />
+      <Screen value={num} />
       <div style={{ display: "flex" }}>
         <div>
           <Number value={0} onClick={handleNumberClick} />
