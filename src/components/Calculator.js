@@ -9,8 +9,9 @@ const Calculator = () => {
   /** TODO: Here is where you are going to keep track of calculator state */
   // const [count, setCount] = useState(0);
   const[firstNum, setFirstNum] = useState("");
-  // const[secondNum, setSecondNum] = useState("");
-    
+  const[secondNum, setSecondNum] = useState("");
+  const[operator, setOperator] = useState("");    
+  
   /** TODO: what happens when I click a number? */
   const handleNumberClick = (e) => {
 
@@ -22,6 +23,10 @@ const Calculator = () => {
 
   /** TODO: what happens when I click an operation? */
   const handleOperationClick = (e) => {
+    console.log("firstNum: ", firstNum);
+    console.log("handleOperator, operator: ", e.target.innerHTML);
+    setOperator(e.target.innerHTML);
+    console.log("operator: ", operator);
   };
 
   return (
