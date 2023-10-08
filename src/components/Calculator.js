@@ -6,6 +6,8 @@ import Screen from "./Screen";
 const Calculator = () => {
   /** TODO: Here is where you are going to keep track of calculator state */
   const [num, setNum] = useState("0");
+  const [firstNum, setFirstNum] = useState("0");
+  const [secondNum, setSecondNum] = useState("0");
   const [operator, setOperator] = useState("");
 
   /** TODO: what happens when I click a number? */
@@ -17,19 +19,36 @@ const Calculator = () => {
     console.log("num state: ", num);
   };
 
+  // const handleCalc = () => {
+  //   setNum(firstNum + secondNum);
+  // };
+
   /** TODO: what happens when I click an operation? */
   const handleOperationClick = (e) => {
     console.log("operator clicked: ", e.target.innerText);
     // track most recent operator click
     // change "-, /, x" operators to "+" (only "+" operator is functional for this homework) 
-    if (e.target.innerText === "-" || e.target.innerText === "/" || e.target.innerText === "x") {
+    if (e.target.innerText === "+" || e.target.innerText === "-" || e.target.innerText === "/" || e.target.innerText === "x") {
       setOperator("+");
       console.log("operator: ", operator)
+      // any time an operator is clicked, set firstNum and reset num
+      setFirstNum(num);
+      setNum("0");
+      console.log("firstNum: ", firstNum);
+      console.log("num reset: ", num);
     } else if (e.target.innerText === "=") {
       setOperator(e.target.innerText);
+      setNum(firstNum+num);
+      // when equal is clicked, set the second number and calculate
+      // setSecondNum(num);
+      // handleCalc();
       console.log("operator: ", operator);
     } else {
       setOperator(e.target.innerText);
+      // when clear operator is clicked, clear all nums
+      setNum("0");
+      setFirstNum("0");
+      setSecondNum("0");
       console.log("operator: ", operator);
     }
   };
