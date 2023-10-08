@@ -8,15 +8,15 @@ const Calculator = () => {
   const [num, setNum] = useState("0");
   const [firstNum, setFirstNum] = useState("0");
 
-  // track number clicks
+  // track number clicks 
   const handleNumberClick = (e) => {
-    // use concatenation of number clicks to build number and parseInt to ignore irrelevant zeroes
+    // concatenate number clicks to build number and parseInt to ignore irrelevant zeroes
     setNum((previousState) => parseInt(previousState + e.target.innerText));
   };
 
   // track the latest operator click
   const handleOperationClick = (e) => {
-    // change "- / x" operators to "+" (because only one needs to be operational for this homework) 
+    // change "- / x" operators to "+" (only one needs to be operational for this homework) 
     if (e.target.innerText === "+" || e.target.innerText === "-" || e.target.innerText === "/" || e.target.innerText === "x") {
       // any time an operator is clicked, set firstNum and reset num to track next number
       setFirstNum(num);
