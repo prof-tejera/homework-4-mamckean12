@@ -14,6 +14,7 @@ const Number = ({ value, onClick }) => {
         backgroundColor: "grey",
         color: "white",
       }}
+      onClick={onClick}
       >
       {value}
     </div>

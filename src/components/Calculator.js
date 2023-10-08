@@ -7,9 +7,17 @@ import Screen from "./Screen";
 
 const Calculator = () => {
   /** TODO: Here is where you are going to keep track of calculator state */
-
+  // const [count, setCount] = useState(0);
+  const[firstNum, setFirstNum] = useState("");
+  // const[secondNum, setSecondNum] = useState("");
+    
   /** TODO: what happens when I click a number? */
   const handleNumberClick = (e) => {
+
+    console.log("handleClick, value: ", e.target.innerHTML);
+    setFirstNum(firstNum+e.target.innerHTML);
+    console.log("num: ", firstNum);
+
   };
 
   /** TODO: what happens when I click an operation? */
