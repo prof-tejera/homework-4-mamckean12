@@ -4,52 +4,32 @@ import Operation from "./Operation";
 import Screen from "./Screen";
 
 const Calculator = () => {
-  /** TODO: Here is where you are going to keep track of calculator state */
+  // track state of first number entered (firstNum) and all other entered numbers (num)
   const [num, setNum] = useState("0");
   const [firstNum, setFirstNum] = useState("0");
-  const [operator, setOperator] = useState("");
 
-  /** TODO: what happens when I click a number? */
+  // track number clicks
   const handleNumberClick = (e) => {
-    console.log("number clicked: ", e.target.innerText);
-    // concatenate string of numbers based on what user clicks
-    // use parseInt to ignore "0", except when relevant
+    // use concatenation of number clicks to build number and parseInt to ignore irrelevant zeroes
     setNum((previousState) => parseInt(previousState + e.target.innerText));
-    console.log("num state: ", num);
   };
 
-  // const handleCalc = () => {
-  //   setNum(firstNum + secondNum);
-  // };
-
-  /** TODO: what happens when I click an operation? */
+  // track the latest operator click
   const handleOperationClick = (e) => {
-    console.log("operator clicked: ", e.target.innerText);
-    // track most recent operator click
-    // change "-, /, x" operators to "+" (only "+" operator is functional for this homework) 
+    // change "- / x" operators to "+" (because only one needs to be operational for this homework) 
     if (e.target.innerText === "+" || e.target.innerText === "-" || e.target.innerText === "/" || e.target.innerText === "x") {
-      setOperator("+");
-      console.log("operator: ", operator)
-      // any time an operator is clicked, set firstNum and reset num
+      // any time an operator is clicked, set firstNum and reset num to track next number
       setFirstNum(num);
       setNum(0);
-      console.log("firstNum: ", firstNum);
-      console.log("num reset: ", num);
     } else if (e.target.innerText === "=") {
-      setOperator(e.target.innerText);
+      // for "=" operator, if firstNum exists, calculate result
       if (firstNum != "0") {
         setNum(firstNum+num);
       }
-      // when equal is clicked, set the second number and calculate
-      // setSecondNum(num);
-      // handleCalc();
-      console.log("operator: ", operator);
     } else {
-      setOperator(e.target.innerText);
       // when clear operator is clicked, clear all num states
       setNum(0);
       setFirstNum(0);
-      console.log("operator: ", operator);
     }
   };
 
