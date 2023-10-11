@@ -4,27 +4,34 @@ import Operation from "./Operation";
 import Screen from "./Screen";
 
 const Calculator = () => {
-  // track state of first number entered (firstNum) and all other entered numbers (num)
-  const [num, setNum] = useState("0");
+  // track first number entered (firstNum), all other numbers after the first (num), and the operator
   const [firstNum, setFirstNum] = useState("0");
+  const [num, setNum] = useState("0");
+  const [operator, setOperator] = useState("");
 
-  // track number clicks 
+  // handle all number clicks and build numbers with concatenation; use parseInt to ignore irrelevant zeroes
   const handleNumberClick = (e) => {
-    // concatenate number clicks to build number and parseInt to ignore irrelevant zeroes
     setNum((previousState) => parseInt(previousState + e.target.innerText));
   };
 
-  // track the latest operator click
+  // handle most recent operator click
   const handleOperationClick = (e) => {
-    // change "- / x" operators to "+" (only one needs to be operational for this homework) 
+    // if not equal or clear, set operator, firstNum, and reset num to track next number 
     if (e.target.innerText === "+" || e.target.innerText === "-" || e.target.innerText === "/" || e.target.innerText === "x") {
-      // any time an operator is clicked, set firstNum and reset num to track next number
+      // set operator (for eval, if the operator is "x", change to multiplicaton symbol "*")
+      if (e.target.innerText === "x") { 
+        setOperator("*") 
+      } else {
+        setOperator(e.target.innerText);
+      }
       setFirstNum(num);
       setNum(0);
     } else if (e.target.innerText === "=") {
       // for "=" operator, if firstNum exists, calculate result
       if (firstNum != "0") {
-        setNum(firstNum+num);
+        // not great for security reasons, but for this homework, use of eval is allowed
+        let result=eval(firstNum+operator+num);
+        setNum(result);
       }
     } else {
       // when clear operator is clicked, clear all num states
