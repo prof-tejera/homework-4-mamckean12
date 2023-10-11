@@ -28,8 +28,9 @@ const Calculator = () => {
       setNum(0);
     } else if (e.target.innerText === "=") {
       // for "=" operator, if firstNum exists, calculate result
-      if (firstNum != "0") {
+      if (firstNum !== "0") {
         // not great for security reasons, but for this homework, use of eval is allowed
+        // eslint-disable-next-line no-eval
         let result=eval(firstNum+operator+num);
         setNum(result);
       }
